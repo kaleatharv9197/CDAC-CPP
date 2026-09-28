@@ -1,28 +1,31 @@
 #include <iostream>
-#include <iomanip>
-
+#include <fstream>
 using namespace std;
 
 int main()
 {
-    int n = 5;
+    ifstream fr("india.txt");
+  	string line;
+    if(!fr.is_open())//if Not open. 
+    	{
+    		cout<<"\nSome kind of error in opening file ";
+    		return 1;//stop code
+		}
+  	//Read a file. 
+  	//We can use a single character,: .get()
+	//a single word.: >>
+  	//a single line: getline(fr,)
+  	int count=1;
+  	while(getline(fr,line))//Stops when the blank occurs. 
+  	{
+  		cout<<endl<<"Line "<<count++<<"--->"<<line;
+  	}
+  	
+  	
+    // Close file
+    fr.close();
 
-    for(int i = n; i >= 1; i--){
-        int spaces = n - i;
-        int stars = 2 * i - 1;
-
-        if(i == n){
-            cout << setw(spaces + stars) << setfill('*') << "" << endl;
-        }
-        else if(i == 1) {
-            cout << setw(spaces + 1) << setfill(' ') << "*" << endl;
-        }
-        elses {
-            cout << setw(spaces + 1) << setfill(' ') << "*";
-            cout << setw(stars - 1) << setfill(' ') << "*";
-            cout << endl;
-        }
-    }
+    cout << "\nData written successfully and file closed.";
 
     return 0;
 }

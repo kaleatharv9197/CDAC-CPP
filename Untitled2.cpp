@@ -1,16 +1,50 @@
-
-#include<iostream>
+#include <iostream>
+#include <fstream>
 using namespace std;
 
 int main()
 {
-    int a = 10, b = 20;
+    // Step 1: Create and write into the file
+    ofstream outFile("me.txt");
 
-    cout <<"value of a is "<<a<<"and value of b is " << b << endl;
-    cout << "a is " << a << ". b is " << b << "." << endl;
-    cout << a << " is a and b is " << b << endl;
-    cout << a << " is a" << endl;
-    cout << b << " is b" << endl;
+    if (!outFile)
+    {
+        cout << "Error creating file!" << endl;
+        return 1;
+    }
+
+    outFile << "<Name>" << endl;
+    outFile << "Atharv Deepak Kale" << endl;
+  
+
+    outFile << "<Email>" << endl;
+    outFile << "kaleatharv@gmail.com" << endl;
+   
+    outFile << "<Phone>" << endl;
+    outFile << "8605305628" << endl;
+  
+
+    outFile.close();
+
+    // Step 2: Read the file using ifstream
+    ifstream inFile("me.txt");
+
+    if (!inFile)
+    {
+        cout << "Error opening file!" << endl;
+        return 1;
+    }
+
+    string line;
+
+    cout << "----- File Content -----" << endl;
+
+    while (getline(inFile, line))
+    {
+        cout << line << endl;
+    }
+
+    inFile.close();
 
     return 0;
 }
